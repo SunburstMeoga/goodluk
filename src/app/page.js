@@ -1,7 +1,8 @@
 'use client';
 import React from 'react'
-
+import { useTranslation } from "react-i18next";
 const Home = () => {
+  const { t } = useTranslation("common");
   const footerItems = [
     {
       title: 'IN FASHION FREEDOM',
@@ -65,18 +66,18 @@ const Home = () => {
         </div>
 
         {/* 右侧的图标 */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-8">
           <button
-            className="text-xl hover:text-yellow-400 transition"
+            className="text-2xl hover:text-#FFD289 transition icon iconfont icon-search text-white"
             onClick={() => console.log("Search clicked")}
           >
-            🔍
+
           </button>
           <button
-            className="text-xl hover:text-yellow-400 transition"
+            className="text-3xl hover:text-#FFD289 transition icon iconfont icon-language text-white"
             onClick={() => console.log("Language switch clicked")}
           >
-            🌐
+
           </button>
         </div>
       </div>
@@ -99,25 +100,59 @@ const Home = () => {
         </div>
       </div>
       <div className='w-full flex justify-center items-center' >
-        <div className='w-1/2 aspect-[16/9] bg-cover bg-center' style={{ backgroundImage: `url('/cool-motorcycle-studio.png')` }} ></div>
-        <div className='w-1/2 aspect-[16/9] bg-cover bg-center -ml-1' style={{ backgroundImage: `url('/cool-motorcycle-studio (1).png')` }} ></div>
+        {/* <div className='w-1/2 aspect-[16/9] bg-cover bg-center' style={{ backgroundImage: `url('/cool-motorcycle-studio.png')` }} ></div>
+        <div className='w-1/2 aspect-[16/9] bg-cover bg-center -ml-1' style={{ backgroundImage: `url('/cool-motorcycle-studio (1).png')` }} ></div> */}
+        <div
+          className="w-1/2 aspect-[16/9] bg-cover bg-center transition-all duration-500 ease-in-out"
+          style={{ backgroundImage: `url('/cool-motorcycle-studio.png')` }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundImage = `url('/image.png')`)}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundImage = `url('/cool-motorcycle-studio.png')`)}
+        ></div>
+        <div
+          className="w-1/2 aspect-[16/9] bg-cover bg-center -ml-1 transition-all duration-500 ease-in-out"
+          style={{ backgroundImage: `url('/cool-motorcycle-studio (1).png')` }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundImage = `url('/image (1).png')`)}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundImage = `url('/cool-motorcycle-studio (1).png')`)}
+        ></div>
 
       </div>
       <div className='w-full flex justify-center items-center' >
-        <div className='w-1/2 aspect-[16/9] bg-cover bg-center' style={{ backgroundImage: `url('/cool-motorcycle-studio (2).png')` }} ></div>
-        <div className='w-1/2 aspect-[16/9] bg-cover bg-center -ml-1' style={{ backgroundImage: `url('/cool-motorcycle-studio (1) (1).png')` }} ></div>
+        <div className='w-1/2 aspect-[16/9] bg-cover bg-center transition-all duration-500 ease-in-out'
+          style={{ backgroundImage: `url('/cool-motorcycle-studio (2).png')` }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundImage = `url('image (2).png')`)}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundImage = `url('/cool-motorcycle-studio (2).png')`)}
+        ></div>
+        <div className='w-1/2 aspect-[16/9] bg-cover bg-center -ml-1 transition-all duration-500 ease-in-out' style={{ backgroundImage: `url('/cool-motorcycle-studio (1) (1).png')` }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundImage = `url('image (3).png')`)}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundImage = `url('cool-motorcycle-studio (1) (1).png')`)}
+        ></div>
       </div>
       <div className='w-full flex justify-center items-center' >
-        <div className='w-1/2  aspect-[960/1080] bg-cover bg-center' style={{ backgroundImage: `url('/cool-motorcycle-studio (5) 1.png')` }} ></div>
+        <div className='w-1/2  aspect-[960/1080] bg-cover bg-center' style={{ backgroundImage: `url('/cool-motorcycle-studio (5) 1.png')` }} >
+          <div className='w-full h-full flex justify-end items-center font-light text-8xl text-#FFD289 pr-24' >ABOUT US</div>
+        </div>
         <div className='w-1/2 flex flex-col justify-center items-center' >
-          <div className='w-full aspect-[16/9] bg-cover bg-center -ml-1' style={{ backgroundImage: `url('/image 1.png')` }} ></div>
-          <div className='w-full aspect-[16/9] bg-cover bg-center -ml-1' style={{ backgroundImage: `url('/cool-motorcycle-studio (5) 2.png')` }} ></div>
+          <div className='w-full aspect-[16/9] bg-cover bg-center -ml-1 relative' style={{ backgroundImage: `url('/image 1.png')` }} >
+            <div className='w-full flex  justify-center items-center text-5xl text-white absolute bottom-11' >Riding guide</div>
+          </div>
+          <div className='w-full aspect-[16/9] bg-cover bg-center -ml-1' style={{ backgroundImage: `url('/cool-motorcycle-studio (5) 2.png')` }} >
+            <div className='w-full flex h-full  justify-center items-center text-7xl text-white ' >Wonderful moments</div>
+          </div>
 
         </div>
       </div>
       <div className='w-full flex justify-center items-center pt-16 pb-32' >
-        <div className='w-11/12 bg-#1B1B2C flex justify-between items-center' >
-
+        <div className='w-11/12 bg-#1B1B2C flex justify-between items-stretch' >
+          {footerItems.map((item, index) => {
+            return <div key={index} className='flex-1 flex flex-col justify-start items-start text-white  text-2xl' >
+              <div className='font-bold mb-4' > {item.title} </div>
+              {item.items.map((_item, _index) => {
+                return <div className={`text font-light mb-2 flex justify-start items-center`} key={_index}>
+                  {item.haveDot ? <div className='w-1 h-1 rounded-full bg-white mx-4'></div> : ''} {_item.title}
+                </div>
+              })}
+            </div>
+          })}
         </div>
       </div>
     </div>
