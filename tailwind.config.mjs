@@ -10,8 +10,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        greenT: 'rgba(52, 146, 40, 1)',
+        '#0000009E': '#0000009E',
+        '#349228': '#349228',
+        '#FFD289': '#FFD289'
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 };
